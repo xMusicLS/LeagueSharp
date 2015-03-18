@@ -52,7 +52,7 @@ namespace DJRyze
             
 			Config = new Menu("DJ Ryze", "Ryze", true);
 
-			var tsMenu = new Menu("Target Selector", "Target Selector");
+			var tsMenu = new Menu("Target Selector", "targetselector");
             TargetSelector.AddToMenu(tsMenu);
             Config.AddSubMenu(tsMenu);
             
@@ -60,57 +60,57 @@ namespace DJRyze
             Orbwalker = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalking"));
             
             Config.AddSubMenu(new Menu("Combo", "Combo"));
-            Config.SubMenu("Combo").AddItem(new MenuItem("Use Q", "Use Q in Combo?").SetValue(true));
-            Config.SubMenu("Combo").AddItem(new MenuItem("Use W", "Use W in combo?").SetValue(true));
-            Config.SubMenu("Combo").AddItem(new MenuItem("Use E", "Use E in combo?").SetValue(true));
-            Config.SubMenu("Combo").AddItem(new MenuItem("Use R", "Use R in combo?").SetValue(true));
-            Config.SubMenu("Combo").AddItem(new MenuItem("Use Ignite", "Use Ignite in combo?").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("Use Q", "useqcombo").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("Use W", "usewcombo").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("Use E", "useecombo").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("Use R", "usercombo").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("Use Ignite", "useignitecombo").SetValue(true));
             
             Config.AddSubMenu(new Menu("Harass", "Harass"));
-            Config.SubMenu("Harass").AddItem(new MenuItem("Use Q", "Use Q in harass?").SetValue(true));
-            Config.SubMenu("Harass").AddItem(new MenuItem("Use W", "Use W in harass?").SetValue(true));
-            Config.SubMenu("Harass").AddItem(new MenuItem("Use E", "Use E in harass?").SetValue(true));
-            Config.SubMenu("Harass").AddItem(new MenuItem("Use R", "Use R in harass?").SetValue(true));
-            Config.SubMenu("Harass").AddItem(new MenuItem("Mana Manager", "Harass MM").SetValue(new Slider(50,1,100)));
+            Config.SubMenu("Harass").AddItem(new MenuItem("Use Q", "useqharass").SetValue(true));
+            Config.SubMenu("Harass").AddItem(new MenuItem("Use W", "usewharass").SetValue(true));
+            Config.SubMenu("Harass").AddItem(new MenuItem("Use E", "useeharass").SetValue(true));
+            Config.SubMenu("Harass").AddItem(new MenuItem("Use R", "userharass").SetValue(true));
+            Config.SubMenu("Harass").AddItem(new MenuItem("Mana Manager", "harassmm").SetValue(new Slider(50,1,100)));
 
             Config.AddSubMenu(new Menu("Lane Clear", "Lane Clear"));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use Q", "Use Q in lane clear?").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use W", "Use W in lane clear?").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use E", "Use E in lane clear?").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use R", "Use R in lane clear?").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Mana Manager", "Lane Clear MM").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use Q", "useqlane").SetValue(true));
+            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use W", "usewlane").SetValue(true));
+            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use E", "useelane").SetValue(true));
+            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use R", "userlane").SetValue(true));
+            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Mana Manager", "lanemm").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Last Hit", "Last Hit"));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use Q", "Use Q in last hit?").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use W", "Use W in last hit?").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use E", "Use E in last hit?").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Mana Manager", "Last Hit MM").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use Q", "useqlast").SetValue(true));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use W", "usewlast").SetValue(true));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use E", "useelast").SetValue(true));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Mana Manager", "lastmm").SetValue(new Slider(50, 1, 100)));
 
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Last Hit Key", "Last Hit Key Binding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Q Last Hit Toggle", "Last Hit Q Toggle").SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
+            Config.SubMenu("Last Hit").AddItem(new MenuItem("Q Last Hit Toggle", "lasthitqtoggle").SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
 
             Config.AddSubMenu(new Menu("Jungle Clear", "Jungle Clear"));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use Q", "Use Q in jungle clear?").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use W", "Use W in jungle clear?").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use E", "Use E in jungle clear?").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use R", "Use R in jungle clear?").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Mana Manager", "Jungle Clear MM").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use Q", "useqjungle").SetValue(true));
+            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use W", "usewjungle").SetValue(true));
+            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use E", "useejungle").SetValue(true));
+            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use R", "userjungle").SetValue(true));
+            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Mana Manager", "junglemm").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Kill Steal", "Kill Steal"));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Q", "Use Q for kill steal?").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use W", "Use W for kill steal?").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use E", "Use E for kill steal?").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Ignite", "Use Ignite for kill steal?").SetValue(true));
+            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Q", "killq").SetValue(true));
+            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use W", "killw").SetValue(true));
+            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use E", "kille").SetValue(true));
+            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Ignite", "killignite").SetValue(true));
 
             Config.AddSubMenu(new Menu("Misc", "Misc"));
-            Config.SubMenu("Misc").AddItem(new MenuItem("Use Ignite", "Use Ignite in misc?").SetValue(new StringList(new[]{"Combo", "Kill Steal"})));
-            Config.SubMenu("Misc").AddItem(new MenuItem("Use R first", "Use R first?").SetValue(true));
-            Config.SubMenu("Misc").AddItem(new MenuItem("W on Gap Closer", "Use W on Gap Closer?").SetValue(true));
+            Config.SubMenu("Misc").AddItem(new MenuItem("Use Ignite", "miscignite").SetValue(new StringList(new[]{"Combo", "Kill Steal"})));
+            Config.SubMenu("Misc").AddItem(new MenuItem("Use R first", "rfirst").SetValue(true));
+            Config.SubMenu("Misc").AddItem(new MenuItem("W on Gap Closer", "wgapcloser").SetValue(true));
 
             Config.AddSubMenu(new Menu("Drawings", "Drawings"));
-            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw Q", "Draw Q?").SetValue(true));
-            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw W", "Draw W?").SetValue(true));
-            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw E", "Draw E?").SetValue(true));
+            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw Q", "drawq").SetValue(true));
+            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw W", "draww").SetValue(true));
+            Config.SubMenu("Drawings").AddItem(new MenuItem("Draw E", "drawe").SetValue(true));
 
             Config.AddToMainMenu();
 
@@ -122,7 +122,7 @@ namespace DJRyze
         // Methods
         static void Enemy_GapCloser(ActiveGapcloser args)
         {
-            if (Config.Item("Use W on Gap Closer?").GetValue<bool>())
+            if (Config.Item("wgapcloser").GetValue<bool>())
             {
                 if (args.Sender.IsValidTarget(W.Range) && Player.Distance(args.End) < Player.Distance(args.Start))
                 {
@@ -132,15 +132,15 @@ namespace DJRyze
         }
         static void Drawing_OnDraw(EventArgs args)
         {
-            if (Config.Item("Draw Q?").GetValue<bool>())
+            if (Config.Item("drawq").GetValue<bool>())
             {
                 Render.Circle.DrawCircle(ObjectManager.Player.Position, Q.Range, System.Drawing.Color.Green);
             }
-            if (Config.Item("Draw W?").GetValue<bool>())
+            if (Config.Item("draww").GetValue<bool>())
             {
                 Render.Circle.DrawCircle(ObjectManager.Player.Position, W.Range, System.Drawing.Color.Red);
             }
-            if (Config.Item("Draw E?").GetValue<bool>())
+            if (Config.Item("drawe").GetValue<bool>())
             {
                 Render.Circle.DrawCircle(ObjectManager.Player.Position, E.Range, System.Drawing.Color.Blue);
             }
@@ -171,30 +171,30 @@ namespace DJRyze
             {
                 return;
             }
-            if (Config.Item("Use R first?").GetValue<bool>() && (Config.Item("Use R in Combo?").GetValue<bool>() && R.IsReady()))
+            if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("usercombo").GetValue<bool>() && R.IsReady()))
             {
                 R.Cast();
             }
-            if (Config.Item("Use Q in Combo?").GetValue<bool>() && Q.IsReady())
+            if (Config.Item("useqcombo").GetValue<bool>() && Q.IsReady())
             {
                 Q.CastOnUnit(Target);
             }
             if (!Q.IsReady())
             {
-                if (Config.Item("Use W in Combo?").GetValue<bool>() && W.IsReady())
+                if (Config.Item("usewcombo").GetValue<bool>() && W.IsReady())
                 {
                     W.CastOnUnit(Target);
                 }
-                if (Config.Item("Use E in Combo?").GetValue<bool>() && E.IsReady())
+                if (Config.Item("useecombo").GetValue<bool>() && E.IsReady())
                 {
                     E.CastOnUnit(Target);
                 }
-                if (Config.Item("Use R in Combo?").GetValue<bool>() && R.IsReady())
+                if (Config.Item("usercombo").GetValue<bool>() && R.IsReady())
                 {
                     R.Cast();
                 }
             }
-            if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("Use Ignite in combo?").GetValue<bool>() && Config.Item("Use Ignite in misc?").GetValue<StringList>().SelectedIndex == 0)
+            if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("useignitecombo").GetValue<bool>() && Config.Item("miscignite").GetValue<StringList>().SelectedIndex == 0)
             {
                 Player.Spellbook.CastSpell(Ignite, Target);
             }
@@ -205,27 +205,27 @@ namespace DJRyze
             {
                 return;
             }
-            if (Player.ManaPercentage() < Config.Item("Harass MM").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() < Config.Item("harassmm").GetValue<Slider>().Value)
             {
-                if (Config.Item("Use R first?").GetValue<bool>() && (Config.Item("Use Q in harass?").GetValue<bool>() && R.IsReady()))
+                if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
                 {
                     R.Cast();
                 }
-                if (Config.Item("Use Q in harass?").GetValue<bool>() && Q.IsReady())
+                if (Config.Item("useqharass").GetValue<bool>() && Q.IsReady())
                 {
                     Q.CastOnUnit(Target);
                 }
                 if (!Q.IsReady())
                 {
-                    if (Config.Item("Use E in harass?").GetValue<bool>() && W.IsReady())
+                    if (Config.Item("useeharass").GetValue<bool>() && W.IsReady())
                     {
                         W.CastOnUnit(Target);
                     }
-                    if (Config.Item("Use W in harass?").GetValue<bool>() && E.IsReady())
+                    if (Config.Item("usewharass").GetValue<bool>() && E.IsReady())
                     {
                         E.CastOnUnit(Target);
                     }
-                    if (Config.Item("Use R in harass?").GetValue<bool>() && R.IsReady())
+                    if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
                     {
                         R.Cast();
                     }
@@ -235,9 +235,9 @@ namespace DJRyze
         static void LaneClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Config.Item("Lane Clear MM").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() < Config.Item("lanemm").GetValue<Slider>().Value)
             {
-                if (Config.Item("Use Q in lane clear?").GetValue<bool>() && Q.IsReady())
+                if (Config.Item("useqlane").GetValue<bool>() && Q.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -247,7 +247,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use W in lane clear?").GetValue<bool>() && W.IsReady())
+                if (Config.Item("usewlane").GetValue<bool>() && W.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -257,7 +257,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use E in lane clear?").GetValue<bool>() && E.IsReady())
+                if (Config.Item("useelane").GetValue<bool>() && E.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -267,7 +267,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use R in lane clear?").GetValue<bool>() && R.IsReady())
+                if (Config.Item("userlane").GetValue<bool>() && R.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -282,9 +282,9 @@ namespace DJRyze
         static void JungleClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
-            if (Player.ManaPercentage() < Config.Item("Jungle Clear ").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() < Config.Item("junglemm").GetValue<Slider>().Value)
             {
-                if (Config.Item("Use Q in jungle clear?").GetValue<bool>() && Q.IsReady())
+                if (Config.Item("useqjungle").GetValue<bool>() && Q.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -294,7 +294,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use W in jungle clear?").GetValue<bool>() && W.IsReady())
+                if (Config.Item("usewjungle").GetValue<bool>() && W.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -304,7 +304,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use E in jungle clear?").GetValue<bool>() && E.IsReady())
+                if (Config.Item("useejungle").GetValue<bool>() && E.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -314,7 +314,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use R in jungle clear?").GetValue<bool>() && R.IsReady())
+                if (Config.Item("userjungle").GetValue<bool>() && R.IsReady())
                 {
                     foreach (var minion in allMinions)
                     {
@@ -328,13 +328,13 @@ namespace DJRyze
         }
         static void LastHit()
         {
-            var keyActive = Config.Item("Last Hit Key Binding").GetValue<KeyBind>().Active;
+            var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
             if (!keyActive)
                 return;
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Config.Item("Last Hit MM ").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() < Config.Item("lastmm").GetValue<Slider>().Value)
             {
-                if (Config.Item("Use Q in last hit?").GetValue<bool>() && Q.IsReady() && Config.Item("Last Hit Q Toggle").GetValue<KeyBind>().Active)
+                if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady() && Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
                 {
                     foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                     {
@@ -344,7 +344,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use W in last hit?").GetValue<bool>() && W.IsReady())
+                if (Config.Item("usewlast").GetValue<bool>() && W.IsReady())
                 {
                     foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
                     {
@@ -354,7 +354,7 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("Use E in last hit?").GetValue<bool>() && E.IsReady())
+                if (Config.Item("useelast").GetValue<bool>() && E.IsReady())
                 {
                     foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
                     {
@@ -369,7 +369,7 @@ namespace DJRyze
         static void KillSteal(Obj_AI_Hero Target)
         {
             var Champions = ObjectManager.Get<Obj_AI_Hero>();
-            if (Config.Item("Use Q for kill steal?").GetValue<bool>() && Q.IsReady())
+            if (Config.Item("killq").GetValue<bool>() && Q.IsReady())
             {
                 foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.Q)))
                 { 
@@ -379,7 +379,7 @@ namespace DJRyze
                     }
                 }
             }
-            if (Config.Item("Use W for kill steal?").GetValue<bool>() && W.IsReady())
+            if (Config.Item("killw").GetValue<bool>() && W.IsReady())
             {
                 foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.W)))
                 {
@@ -389,7 +389,7 @@ namespace DJRyze
                     }
                 }
             }
-            if (Config.Item("Use E for kill steal?").GetValue<bool>() && E.IsReady())
+            if (Config.Item("kille").GetValue<bool>() && E.IsReady())
             {
                 foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.E)))
                 {
@@ -399,7 +399,7 @@ namespace DJRyze
                     }
                 }
             }
-            if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("Use Ignite in combo?").GetValue<bool>() && Config.Item("Use Ignite for kill steal?").GetValue<bool>() && Config.Item("Use Ignite in misc?").GetValue<StringList>().SelectedIndex == 1)
+            if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("useignitecombo").GetValue<bool>() && Config.Item("killignite").GetValue<bool>() && Config.Item("miscignite").GetValue<StringList>().SelectedIndex == 1)
             {
                 Player.Spellbook.CastSpell(Ignite, Target);
             }
