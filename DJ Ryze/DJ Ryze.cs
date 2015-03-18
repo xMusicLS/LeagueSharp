@@ -11,15 +11,13 @@ namespace DJRyze
 {
     class Program
     {
+        // Fields and Functions
+        
         private static Orbwalking.Orbwalker Orbwalker;
-
         private static Menu Config;
-
         private static Spell Q, W, E, R;
         private static SpellSlot Ignite;
-
         private static Obj_AI_Hero Player;
-
         private static float IgniteDamage(Obj_AI_Base target)
         {
             if (Ignite == SpellSlot.Unknown || Player.Spellbook.CanUseSpell(Ignite) != SpellState.Ready)
@@ -28,7 +26,6 @@ namespace DJRyze
             }
             return (float)Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite);
         }
-
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
@@ -52,6 +49,8 @@ namespace DJRyze
 
             Ignite = Player.GetSpellSlot("summonerdot");
 
+            // Menu
+            
 			Config = new Menu("DJ Ryze", "Ryze", true);
 
 			var tsMenu = new Menu("Target Selector", "Target Selector");
@@ -117,12 +116,11 @@ namespace DJRyze
             Config.AddToMainMenu();
 
             Game.OnUpdate += Game_OnGameUpdate;
-
             AntiGapcloser.OnEnemyGapcloser += Enemy_GapCloser;
-
             Drawing.OnDraw += Drawing_OnDraw;
         }
 
+        // Methods
         static void Enemy_GapCloser(ActiveGapcloser args)
         {
             if (Config.Item("Use W on Gap Closer?").GetValue<bool>())
@@ -133,7 +131,6 @@ namespace DJRyze
                 }
             }
         }
-
         static void Drawing_OnDraw(EventArgs args)
         {
             if (Config.Item("Draw Q").GetValue<bool>())
@@ -149,7 +146,6 @@ namespace DJRyze
                 Render.Circle.DrawCircle(ObjectManager.Player.Position, E.Range, System.Drawing.Color.Blue);
             }
         }
-
         static void Game_OnGameUpdate(EventArgs args)
         {
             switch (Orbwalker.ActiveMode)
@@ -166,63 +162,51 @@ namespace DJRyze
                     break;
             }
             LastHit();
-
             var ksTarget = ObjectManager.Get<Obj_AI_Hero>().Where(t => t.IsValidTarget()).OrderBy(t => t.Health).FirstOrDefault();
             if (ksTarget != null)
             KillSteal(ksTarget);
         }
-
         static void Combo(Obj_AI_Hero Target)
         {
             if (Target == null)
             {
                 return;
             }
-
             if (Config.Item("Use R first?").GetValue<bool>() && R.IsReady())
             {
                 R.Cast();
             }
-
             if (Q.IsReady())
             {
                 Q.CastOnUnit(Target);
             }
-
             if (!Q.IsReady())
             {
                 if (W.IsReady())
                 {
                     W.CastOnUnit(Target);
                 }
-
                 if (E.IsReady())
                 {
                     E.CastOnUnit(Target);
                 }
-
                 if (R.IsReady())
                 {
                     R.Cast();
                 }
             }
-
             if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("Use Ignite").GetValue<bool>() && Config.Item("Use Ignite in misc?").GetValue<StringList>().SelectedIndex == 0)
             {
                 Player.Spellbook.CastSpell(Ignite, Target);
             }
-
         }
-
         static void Harass(Obj_AI_Hero Target)
         {
             if (Target == null)
             {
                 return;
             }
-
             if (Player.ManaPercentage() < Config.Item("Harass MM").GetValue<Slider>().Value)
-
             if (Config.Item("Use R first?").GetValue<bool>() && R.IsReady())
             {
                 R.Cast();
@@ -247,11 +231,9 @@ namespace DJRyze
                 }
             }
         }
-
         static void LaneClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-
             if (Config.Item("Use Q").GetValue<bool>() && Q.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -262,9 +244,7 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Player.ManaPercentage() < Config.Item("Lane Clear MM").GetValue<Slider>().Value)
-
             if (Config.Item("Use W").GetValue<bool>() && W.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -275,7 +255,6 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Config.Item("Use E").GetValue<bool>() && E.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -286,7 +265,6 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Config.Item("Use R").GetValue<bool>() && R.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -298,11 +276,9 @@ namespace DJRyze
                 }
             }
         }
-
         static void JungleClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
-
             if (Config.Item("Use Q").GetValue<bool>() && Q.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -313,7 +289,6 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Config.Item("Use W").GetValue<bool>() && W.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -324,7 +299,6 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Config.Item("Use E").GetValue<bool>() && E.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -335,7 +309,6 @@ namespace DJRyze
                     }
                 }
             }
-
             if (Config.Item("Use R").GetValue<bool>() && R.IsReady())
             {
                 foreach (var minion in allMinions)
@@ -347,15 +320,12 @@ namespace DJRyze
                 }
             }
         }
-
         static void LastHit()
         {
             var keyActive = Config.Item("Last Hit Key Binding").GetValue<KeyBind>().Active;
             if (!keyActive)
                 return;
-
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-
             if (Config.Item("Use Q").GetValue<bool>() && Q.IsReady() && Config.Item("Last Hit Q Toggle").GetValue<KeyBind>().Active)
             {
                 foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
@@ -387,7 +357,6 @@ namespace DJRyze
                 }
             }
         }   
-
         static void KillSteal(Obj_AI_Hero Target)
         {
             var Champions = ObjectManager.Get<Obj_AI_Hero>();
@@ -400,7 +369,6 @@ namespace DJRyze
                         Q.CastOnUnit(champ);
                     }
                 }
-
             }
             if (Config.Item("Use W").GetValue<bool>() && W.IsReady())
             {
