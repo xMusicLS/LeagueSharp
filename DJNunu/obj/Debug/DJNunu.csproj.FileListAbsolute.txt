@@ -1,0 +1,12 @@
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\DJNunu.exe.config
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\DJNunu.exe
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\DJNunu.pdb
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\LeagueSharp.Common.dll
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\LeagueSharp.dll
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\SharpDX.dll
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\clipper_library.dll
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\bin\Debug\LeagueSharp.xml
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\obj\Debug\DJNunu.csprojResolveAssemblyReference.cache
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\obj\Debug\DJNunu.exe
+c:\users\riven\documents\visual studio 2013\Projects\DJNunu\DJNunu\obj\Debug\DJNunu.pdb
