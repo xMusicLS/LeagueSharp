@@ -30,7 +30,6 @@ namespace DJRyze
         {
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
-
         static void Game_OnGameLoad(EventArgs args)
 		{
 			if (ObjectManager.Player.ChampionName != "Ryze")
@@ -66,7 +65,7 @@ namespace DJRyze
             Config.SubMenu("Combo").AddItem(new MenuItem("Use E", "Use E in combo?").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("Use R", "Use R in combo?").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("Use Ignite", "Use Ignite in combo?").SetValue(true));
-
+            
             Config.AddSubMenu(new Menu("Harass", "Harass"));
             Config.SubMenu("Harass").AddItem(new MenuItem("Use Q", "Use Q in harass?").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("Use W", "Use W in harass?").SetValue(true));
@@ -172,25 +171,25 @@ namespace DJRyze
             {
                 return;
             }
-            if (Config.Item("Use R first?").GetValue<bool>() && R.IsReady())
+            if (Config.Item("Use R first?").GetValue<bool>() && (Config.Item("Use Q").GetValue<bool>() && R.IsReady()))
             {
                 R.Cast();
             }
-            if (Q.IsReady())
+            if (Config.Item("Use Q").GetValue<bool>() && Q.IsReady())
             {
                 Q.CastOnUnit(Target);
             }
             if (!Q.IsReady())
             {
-                if (W.IsReady())
+                if (Config.Item("Use W").GetValue<bool>() && W.IsReady())
                 {
                     W.CastOnUnit(Target);
                 }
-                if (E.IsReady())
+                if (Config.Item("Use E").GetValue<bool>() && E.IsReady())
                 {
                     E.CastOnUnit(Target);
                 }
-                if (R.IsReady())
+                if (Config.Item("Use R").GetValue<bool>() && R.IsReady())
                 {
                     R.Cast();
                 }
@@ -207,25 +206,25 @@ namespace DJRyze
                 return;
             }
             if (Player.ManaPercentage() < Config.Item("Harass MM").GetValue<Slider>().Value)
-            if (Config.Item("Use R first?").GetValue<bool>() && R.IsReady())
+            if (Config.Item("Use R first?").GetValue<bool>() && (Config.Item("Use Q").GetValue<bool>() &&R.IsReady()))
             {
                 R.Cast();
             }
-            if (Q.IsReady())
+            if (Config.Item("Use Q").GetValue<bool>() && Q.IsReady())
             {
                 Q.CastOnUnit(Target);
             }
             if (!Q.IsReady())
             {
-                if (W.IsReady())
+                if (Config.Item("Use W").GetValue<bool>() && W.IsReady())
                 {
                     W.CastOnUnit(Target);
                 }
-                if (E.IsReady())
+                if (Config.Item("Use E").GetValue<bool>() && E.IsReady())
                 {
                     E.CastOnUnit(Target);
                 }
-                if (R.IsReady())
+                if (Config.Item("Use R").GetValue<bool>() && R.IsReady())
                 {
                     R.Cast();
                 }
