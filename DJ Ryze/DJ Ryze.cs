@@ -74,33 +74,33 @@ namespace DJRyze
             Config.SubMenu("Harass").AddItem(new MenuItem("Mana Manager", "harassmm").SetValue(new Slider(50,1,100)));
 
             Config.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use Q", "useqlane").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use W", "usewlane").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use E", "useelane").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Use R", "userlane").SetValue(true));
-            Config.SubMenu("Lane Clear").AddItem(new MenuItem("Mana Manager", "lanemm").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("Use Q", "useqlane").SetValue(true));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("Use W", "usewlane").SetValue(true));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("Use E", "useelane").SetValue(true));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("Use R", "userlane").SetValue(true));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("Mana Manager", "lanemm").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Last Hit", "LastHit"));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use Q", "useqlast").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use W", "usewlast").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Use E", "useelast").SetValue(true));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Mana Manager", "lastmm").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Use Q", "useqlast").SetValue(true));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Use W", "usewlast").SetValue(true));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Use E", "useelast").SetValue(true));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Mana Manager", "lastmm").SetValue(new Slider(50, 1, 100)));
 
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
-            Config.SubMenu("Last Hit").AddItem(new MenuItem("Q Last Hit Toggle", "lasthitqtoggle").SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
+            Config.SubMenu("LastHit").AddItem(new MenuItem("Q Last Hit Toggle", "lasthitqtoggle").SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
 
             Config.AddSubMenu(new Menu("Jungle Clear", "JungleClear"));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use Q", "useqjungle").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use W", "usewjungle").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use E", "useejungle").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Use R", "userjungle").SetValue(true));
-            Config.SubMenu("Jungle Clear").AddItem(new MenuItem("Mana Manager", "junglemm").SetValue(new Slider(50, 1, 100)));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("Use Q", "useqjungle").SetValue(true));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("Use W", "usewjungle").SetValue(true));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("Use E", "useejungle").SetValue(true));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("Use R", "userjungle").SetValue(true));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("Mana Manager", "junglemm").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Kill Steal", "KillSteal"));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Q", "killq").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use W", "killw").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use E", "kille").SetValue(true));
-            Config.SubMenu("Kill Steal").AddItem(new MenuItem("Use Ignite", "killignite").SetValue(true));
+            Config.SubMenu("KillSteal").AddItem(new MenuItem("Use Q", "killq").SetValue(true));
+            Config.SubMenu("KillSteal").AddItem(new MenuItem("Use W", "killw").SetValue(true));
+            Config.SubMenu("KillSteal").AddItem(new MenuItem("Use E", "kille").SetValue(true));
+            Config.SubMenu("KillSteal").AddItem(new MenuItem("Use Ignite", "killignite").SetValue(true));
 
             Config.AddSubMenu(new Menu("Misc", "Misc"));
             Config.SubMenu("Misc").AddItem(new MenuItem("Use Ignite", "miscignite").SetValue(new StringList(new[]{"Combo", "Kill Steal"})));

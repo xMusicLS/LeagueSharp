@@ -64,26 +64,26 @@ namespace DJNunu
             Menu.SubMenu("Harass").AddItem(new MenuItem("Use E", "eh").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
-            Menu.SubMenu("Lane Clear").AddItem(new MenuItem("Use Q", "qlc").SetValue(true));
-            Menu.SubMenu("Lane Clear").AddItem(new MenuItem("Health Manager", "lanehm").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("Lane Clear").AddItem(new MenuItem("Use W", "wlc").SetValue(true));
-            Menu.SubMenu("Lane Clear").AddItem(new MenuItem("Use E", "elc").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use Q", "qlc").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Health Manager", "lanehm").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use W", "wlc").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use E", "elc").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Jungle Clear", "JungleClear"));
-            Menu.SubMenu("Jungle Clear").AddItem(new MenuItem("Use Q", "qjc").SetValue(true));
-            Menu.SubMenu("Jungle Clear").AddItem(new MenuItem("Health Manager", "junglehm").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("Jungle Clear").AddItem(new MenuItem("Use W", "wjc").SetValue(true));
-            Menu.SubMenu("Jungle Clear").AddItem(new MenuItem("Use E", "ejc").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use Q", "qjc").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Health Manager", "junglehm").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use W", "wjc").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use E", "ejc").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Last Hit", "LastHit"));
-            Menu.SubMenu("Last Hit").AddItem(new MenuItem("Use Q", "qlh").SetValue(true));
-            Menu.SubMenu("Last Hit").AddItem(new MenuItem("Use E", "elh").SetValue(true));
-            Menu.SubMenu("Last Hit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("Use Q", "qlh").SetValue(true));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("Use E", "elh").SetValue(true));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
 
             Menu.AddSubMenu(new Menu("Kill Steal", "KillSteal"));
-            Menu.SubMenu("Kill Steal").AddItem(new MenuItem("Use E", "eks").SetValue(true));
-            Menu.SubMenu("Kill Steal").AddItem(new MenuItem("Use R", "rks").SetValue(true));
-            Menu.SubMenu("Kill Steal").AddItem(new MenuItem("Use Ignite", "igniteks").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use E", "eks").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use R", "rks").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use Ignite", "igniteks").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
             Menu.SubMenu("Misc").AddItem(new MenuItem("Auto Q", "autoq").SetValue(true));
@@ -94,11 +94,11 @@ namespace DJNunu
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
             Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw Q", "dq").SetValue(true));
             Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw W", "dw").SetValue(true));
-            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw E", "de").SetValue(true));
+            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw E", "de").SetValue(true));  
             Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw R", "dr").SetValue(true));
 
             Menu.AddToMainMenu();
-            Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.OnUpdate += Game_OnGameUpdate;
             Drawing.OnDraw += Drawing_OnDraw;
         }
 
