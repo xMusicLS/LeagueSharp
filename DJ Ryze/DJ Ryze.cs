@@ -147,23 +147,24 @@ namespace DJRyze
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
+            var target = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Magical);
             switch (Orbwalker.ActiveMode)
             {
                 case Orbwalking.OrbwalkingMode.Combo:
-                    Combo(TargetSelector.GetTarget(1200f, TargetSelector.DamageType.Magical));
-                    break;
-                case Orbwalking.OrbwalkingMode.Mixed:
-                    Harass(TargetSelector.GetTarget(1200f, TargetSelector.DamageType.Magical));
+                    Combo(target);
                     break;
                 case Orbwalking.OrbwalkingMode.LaneClear:
                     LaneClear();
                     JungleClear();
                     break;
+                case Orbwalking.OrbwalkingMode.Mixed:
+                    Harass(target);
+                    break;
             }
             LastHit();
             var ksTarget = ObjectManager.Get<Obj_AI_Hero>().Where(t => t.IsValidTarget()).OrderBy(t => t.Health).FirstOrDefault();
             if (ksTarget != null)
-            KillSteal(ksTarget);
+                KillSteal(ksTarget);
         }
         static void Combo(Obj_AI_Hero Target)
         {
