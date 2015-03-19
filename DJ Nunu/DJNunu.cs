@@ -46,10 +46,10 @@ namespace DJNunu
 
             // Menu
             Menu = new Menu("DJ Nunu", "Nunu", true);
-            var tsMenu = new Menu("Target Selector", "Target Selector");
+            var tsMenu = new Menu("Target Selector", "TargetSelector");
             TargetSelector.AddToMenu(tsMenu);
             Menu.AddSubMenu(tsMenu);
-            Menu.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
+            Menu.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
             Orbwalker = new Orbwalking.Orbwalker(Menu.SubMenu("Orbwalking"));
 
             Menu.AddSubMenu(new Menu("Combo", "Combo"));
@@ -319,4 +319,4 @@ namespace DJNunu
             }
         }
     }
-}
+}   

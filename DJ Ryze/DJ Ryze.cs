@@ -52,7 +52,7 @@ namespace DJRyze
             
 			Config = new Menu("DJ Ryze", "Ryze", true);
 
-			var tsMenu = new Menu("Target Selector", "targetselector");
+			var tsMenu = new Menu("Target Selector", "TargetSelector");
             TargetSelector.AddToMenu(tsMenu);
             Config.AddSubMenu(tsMenu);
             
