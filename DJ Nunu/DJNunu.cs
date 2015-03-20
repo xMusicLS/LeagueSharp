@@ -166,6 +166,10 @@ namespace DJNunu
             {
                 R.Cast();
             }
+            if (Player.Distance(target.Position) <= 600 && IgniteDamage(target) >= target.Health && Menu.Item("ignitec").GetValue<bool>() && Menu.Item("miscignite").GetValue<StringList>().SelectedIndex == 0)
+            {
+                Player.Spellbook.CastSpell(Ignite, target);
+            }
         }
         static void Harass(Obj_AI_Hero target)
         {
