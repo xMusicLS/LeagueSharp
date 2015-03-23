@@ -61,7 +61,7 @@ namespace DJRyze
             
             Config.AddSubMenu(new Menu("Combo", "Combo"));
             Config.SubMenu("Combo").AddItem(new MenuItem("useqcombo", "Use Q").SetValue(true));
-            Config.SubMenu("Combo").AddItem(new MenuItem("usewcombo", "Use Q").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("usewcombo", "Use W").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("useecombo", "Use E").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("usercombo", "Use R").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("useignitecombo", "Use Ignite").SetValue(true));
