@@ -152,7 +152,7 @@ namespace DJAmumu
             {
                 return;
             }
-            if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range))
+            if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range) && Q.GetPrediction(target).Hitchance >= HitChance.High)
             {
                 Q.GetPrediction(target);
                 Q.CastIfWillHit(target);
