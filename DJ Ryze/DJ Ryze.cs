@@ -168,7 +168,7 @@ namespace DJRyze
         }
         static void Combo(Obj_AI_Hero Target)
         {
-            if (Target == null)
+            if (!Target.IsValidTarget())
             {
                 return;
             }
@@ -202,7 +202,7 @@ namespace DJRyze
         }
         static void Harass(Obj_AI_Hero Target)
         {
-            if (Target == null)
+            if (!Target.IsValidTarget())
             {
                 return;
             }

@@ -148,7 +148,7 @@ namespace DJAmumu
         }
         static void Combo(Obj_AI_Hero target)
         {
-            if (target == null)
+            if (!target.IsValidTarget())
             {
                 return;
             }
@@ -179,7 +179,7 @@ namespace DJAmumu
         }
         static void Harass(Obj_AI_Hero target)
         {
-            if (target == null)
+            if (!target.IsValidTarget())
             {
                 return;
             }
