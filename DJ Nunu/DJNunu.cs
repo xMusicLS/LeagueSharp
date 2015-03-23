@@ -88,7 +88,6 @@ namespace DJNunu
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
             Menu.SubMenu("Misc").AddItem(new MenuItem("autoq", "Auto Q").SetValue(true));
             Menu.SubMenu("Misc").AddItem(new MenuItem("mischm", "Health Manager").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("wallies", "Use W on Allies").SetValue(true));
             Menu.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
 
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
@@ -149,13 +148,9 @@ namespace DJNunu
             {
                 return;
             }
-            if (Menu.Item("wc").GetValue<bool>() && Menu.Item("wallies").GetValue<bool>() && W.IsReady())
+            if (Menu.Item("wc").GetValue<bool>() && W.IsReady())
             {
-                foreach (var allies in ObjectManager.Get<Obj_AI_Hero>().Where(a => a.IsAlly && a.IsValid))
-                {
-                    W.Cast();
-                    break;
-                }
+                W.Cast();
             }
             if (Menu.Item("ec").GetValue<bool>() && E.IsReady())
             {
@@ -177,13 +172,9 @@ namespace DJNunu
             {
                 return;
             }
-            if (Menu.Item("wh").GetValue<bool>() && Menu.Item("wallies").GetValue<bool>() && W.IsReady())
+            if (Menu.Item("wh").GetValue<bool>() && && W.IsReady())
             {
-                foreach (var allies in ObjectManager.Get<Obj_AI_Hero>().Where(a => a.IsAlly && a.IsValid))
-                {
-                    W.CastOnBestTarget();
-                    break;
-                }
+                W.Cast();
             }
             if (Menu.Item("eh").GetValue<bool>() && E.IsReady())
             {
@@ -206,13 +197,9 @@ namespace DJNunu
                     }
                 }
             }
-            if (Menu.Item("wlc").GetValue<bool>() && Menu.Item("wallies").GetValue<bool>() && W.IsReady())
+            if (Menu.Item("wlc").GetValue<bool>() && && W.IsReady())
             {
-                foreach (var allies in ObjectManager.Get<Obj_AI_Hero>().Where(a => a.IsAlly && a.IsValid))
-                {
-                    W.CastOnBestTarget();
-                    break;
-                }
+                W.Cast();
             }
             if (Menu.Item("elc").GetValue<bool>() && E.IsReady())
             {
@@ -241,13 +228,9 @@ namespace DJNunu
                     }
                 }
             }
-            if (Menu.Item("wjc").GetValue<bool>() && Menu.Item("wallies").GetValue<bool>() && W.IsReady())
+            if (Menu.Item("wjc").GetValue<bool>() && && W.IsReady())
             {
-                foreach (var allies in ObjectManager.Get<Obj_AI_Hero>().Where(a => a.IsAlly && a.IsValid))
-                {
-                    W.CastOnBestTarget();
-                    break;
-                }
+                W.Cast();
             }
             if (Menu.Item("ejc").GetValue<bool>() && E.IsReady())
             {
