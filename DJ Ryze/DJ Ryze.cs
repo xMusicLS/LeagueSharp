@@ -64,6 +64,7 @@ namespace DJRyze
             Config.SubMenu("Combo").AddItem(new MenuItem("usewcombo", "Use W").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("useecombo", "Use E").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("usercombo", "Use R").SetValue(true));
+            Config.SubMenu("Combo").AddItem(new MenuItem("combohm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Config.SubMenu("Combo").AddItem(new MenuItem("useignitecombo", "Use Ignite").SetValue(true));
             
             Config.AddSubMenu(new Menu("Harass", "Harass"));
@@ -71,6 +72,7 @@ namespace DJRyze
             Config.SubMenu("Harass").AddItem(new MenuItem("usewharass", "Use W").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("useeharass", "Use E").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("userharass", "Use R").SetValue(true));
+            Config.SubMenu("Harass").AddItem(new MenuItem("harasshm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Config.SubMenu("Harass").AddItem(new MenuItem("harassmm", "Mana Manager").SetValue(new Slider(50,1,100)));
 
             Config.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
@@ -78,6 +80,7 @@ namespace DJRyze
             Config.SubMenu("LaneClear").AddItem(new MenuItem("usewlane", "Use W").SetValue(true));
             Config.SubMenu("LaneClear").AddItem(new MenuItem("useelane", "Use E").SetValue(true));
             Config.SubMenu("LaneClear").AddItem(new MenuItem("userlane", "Use R").SetValue(true));
+            Config.SubMenu("LaneClear").AddItem(new MenuItem("lanehm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Config.SubMenu("LaneClear").AddItem(new MenuItem("lanemm", "Mana Manager").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Last Hit", "LastHit"));
@@ -94,6 +97,7 @@ namespace DJRyze
             Config.SubMenu("JungleClear").AddItem(new MenuItem("usewjungle", "Use W").SetValue(true));
             Config.SubMenu("JungleClear").AddItem(new MenuItem("useejungle", "Use E").SetValue(true));
             Config.SubMenu("JungleClear").AddItem(new MenuItem("userjungle", "Use R").SetValue(true));
+            Config.SubMenu("JungleClear").AddItem(new MenuItem("junglehm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Config.SubMenu("JungleClear").AddItem(new MenuItem("junglemm", "Mana Manager").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Kill Steal", "KillSteal"));
@@ -190,9 +194,12 @@ namespace DJRyze
                 {
                     E.CastOnUnit(Target);
                 }
-                if (Config.Item("usercombo").GetValue<bool>() && R.IsReady())
+                if (Player.HealthPercentage() <= Config.Item("combohm").GetValue<Slider>().Value)
                 {
-                    R.Cast();
+                    if (Config.Item("usercombo").GetValue<bool>() && R.IsReady())
+                    {
+                        R.Cast();
+                    }
                 }
             }
             if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Config.Item("useignitecombo").GetValue<bool>() && Config.Item("miscignite").GetValue<StringList>().SelectedIndex == 0)
@@ -226,9 +233,12 @@ namespace DJRyze
                     {
                         E.CastOnUnit(Target);
                     }
-                    if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
+                    if (Player.HealthPercentage() <= Config.Item("harasshm").GetValue<Slider>().Value)
                     {
-                        R.Cast();
+                        if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
+                        {
+                            R.Cast();
+                        }
                     }
                 }
             }
@@ -268,13 +278,16 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("userlane").GetValue<bool>() && R.IsReady())
+                if (Player.HealthPercentage() <= Config.Item("lanehm").GetValue<Slider>().Value)
                 {
-                    foreach (var minion in allMinions)
+                    if (Config.Item("userlane").GetValue<bool>() && R.IsReady())
                     {
-                        if (minion.IsValidTarget())
+                        foreach (var minion in allMinions)
                         {
-                            R.Cast();
+                            if (minion.IsValidTarget())
+                            {
+                                R.Cast();
+                            }
                         }
                     }
                 }
@@ -315,13 +328,16 @@ namespace DJRyze
                         }
                     }
                 }
-                if (Config.Item("userjungle").GetValue<bool>() && R.IsReady())
+                if (Player.HealthPercentage() <= Config.Item("junglehm").GetValue<Slider>().Value)
                 {
-                    foreach (var minion in allMinions)
+                    if (Config.Item("userjungle").GetValue<bool>() && R.IsReady())
                     {
-                        if (minion.IsValidTarget())
+                        foreach (var minion in allMinions)
                         {
-                            R.Cast();
+                            if (minion.IsValidTarget())
+                            {
+                                R.Cast();
+                            }
                         }
                     }
                 }
