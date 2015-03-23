@@ -202,35 +202,49 @@ namespace DJRyze
         }
         static void Harass(Obj_AI_Hero Target)
         {
-            if (!Target.IsValidTarget())
+            try
             {
-                return;
-            }
-            if (Player.ManaPercentage() >= Config.Item("harassmm").GetValue<Slider>().Value)
-            {
-                if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
+                if (!Target.IsValidTarget())
                 {
-                    R.Cast();
+                    return;
                 }
-                if (Config.Item("useqharass").GetValue<bool>() && Q.IsReady())
+                if (Player.ManaPercentage() >= Config.Item("harassmm").GetValue<Slider>().Value)
                 {
-                    Q.CastOnUnit(Target);
-                }
-                if (!Q.IsReady())
-                {
-                    if (Config.Item("useeharass").GetValue<bool>() && W.IsReady())
-                    {
-                        W.CastOnUnit(Target);
-                    }
-                    if (Config.Item("usewharass").GetValue<bool>() && E.IsReady())
-                    {
-                        E.CastOnUnit(Target);
-                    }
-                    if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
+                    Console.WriteLine("1");
+                    if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
+                        Console.WriteLine("2");
                     {
                         R.Cast();
                     }
+                    if (Config.Item("useqharass").GetValue<bool>() && Q.IsReady())
+                        Console.WriteLine("3");
+                    {
+                        Q.CastOnUnit(Target);
+                    }
+                    if (!Q.IsReady())
+                        Console.WriteLine("4");
+                    {
+                        if (Config.Item("useeharass").GetValue<bool>() && W.IsReady())
+                            Console.WriteLine("5");
+                        {
+                            W.CastOnUnit(Target);
+                        }
+                        if (Config.Item("usewharass").GetValue<bool>() && E.IsReady())
+                            Console.WriteLine("6");
+                        {
+                            E.CastOnUnit(Target);
+                        }
+                        if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
+                            Console.WriteLine("7");
+                        {
+                            R.Cast();
+                        }
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+
             }
         }
         static void LaneClear()
