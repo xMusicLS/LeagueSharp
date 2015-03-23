@@ -155,7 +155,7 @@ namespace DJAmumu
             if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range))
             {
                 Q.GetPrediction(target);
-                Q.CastOnUnit(target);
+                Q.CastIfWillHit(target);
             }
             if (ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).ToggleState == 1)
             {
