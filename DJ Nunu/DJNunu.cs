@@ -153,7 +153,7 @@ namespace DJNunu
             {
                 foreach (var allies in ObjectManager.Get<Obj_AI_Hero>().Where(a => a.IsAlly && a.IsValid))
                 {
-                    W.CastOnBestTarget();
+                    W.Cast();
                     break;
                 }
             }
