@@ -53,49 +53,49 @@ namespace DJNunu
             Orbwalker = new Orbwalking.Orbwalker(Menu.SubMenu("Orbwalking"));
 
             Menu.AddSubMenu(new Menu("Combo", "Combo"));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("Use W", "wc").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("Use E", "ec").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("Use R", "rc").SetValue(true));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("Enemies for R?", "enemiesr").SetValue(new Slider(3, 1, 5)));
-            Menu.SubMenu("Combo").AddItem(new MenuItem("Use Ignite", "ignitec").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("wc", "Use W").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("ec", "Use E").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("rc", "Use R").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("enemiesr", "Enemies for R?").SetValue(new Slider(3, 1, 5)));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("ignitec", "Use Ignite").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Harass", "Harass"));
-            Menu.SubMenu("Harass").AddItem(new MenuItem("Use W", "wh").SetValue(true));
-            Menu.SubMenu("Harass").AddItem(new MenuItem("Use E", "eh").SetValue(true));
+            Menu.SubMenu("Harass").AddItem(new MenuItem("wh", "Use W").SetValue(true));
+            Menu.SubMenu("Harass").AddItem(new MenuItem("eh", "Use E").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
-            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use Q", "qlc").SetValue(true));
-            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Health Manager", "lanehm").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use W", "wlc").SetValue(true));
-            Menu.SubMenu("LaneClear").AddItem(new MenuItem("Use E", "elc").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("qlc", "Use Q").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("lanehm", "Health Manager").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("wlc", "Use W").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("elc", "Use E").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Jungle Clear", "JungleClear"));
-            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use Q", "qjc").SetValue(true));
-            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Health Manager", "junglehm").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use W", "wjc").SetValue(true));
-            Menu.SubMenu("JungleClear").AddItem(new MenuItem("Use E", "ejc").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("qjc", "Use Q").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("junglehm", "Health Manager").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("wjc", "Use W").SetValue(true));
+            Menu.SubMenu("JungleClear").AddItem(new MenuItem("ejc", "Use E").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Last Hit", "LastHit"));
-            Menu.SubMenu("LastHit").AddItem(new MenuItem("Use Q", "qlh").SetValue(true));
-            Menu.SubMenu("LastHit").AddItem(new MenuItem("Use E", "elh").SetValue(true));
-            Menu.SubMenu("LastHit").AddItem(new MenuItem("Last Hit Key", "lasthitkeybinding").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("qlh", "Use Q").SetValue(true));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("elh", "Use E").SetValue(true));
+            Menu.SubMenu("LastHit").AddItem(new MenuItem("lasthitkeybinding", "Last Hit Key").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
 
             Menu.AddSubMenu(new Menu("Kill Steal", "KillSteal"));
-            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use E", "eks").SetValue(true));
-            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use R", "rks").SetValue(true));
-            Menu.SubMenu("KillSteal").AddItem(new MenuItem("Use Ignite", "igniteks").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("eks", "Use E").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("rks", "Use R").SetValue(true));
+            Menu.SubMenu("KillSteal").AddItem(new MenuItem("igniteks", "Use Ignite").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Auto Q", "autoq").SetValue(true));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Health Manager", "mischm").SetValue(new Slider(50, 1, 100)));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Use W on Allies", "wallies").SetValue(true));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("Use Igntie", "miscignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("autoq", "Auto Q").SetValue(true));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("mischm", "Health Manager").SetValue(new Slider(50, 1, 100)));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("wallies", "Use W on Allies").SetValue(true));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
 
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
-            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw Q", "dq").SetValue(true));
-            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw W", "dw").SetValue(true));
-            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw E", "de").SetValue(true));  
-            Menu.SubMenu("Drawings").AddItem(new MenuItem("Draw R", "dr").SetValue(true));
+            Menu.SubMenu("Drawings").AddItem(new MenuItem("dq", "Draw Q").SetValue(true));
+            Menu.SubMenu("Drawings").AddItem(new MenuItem("dw", "Draw W").SetValue(true));
+            Menu.SubMenu("Drawings").AddItem(new MenuItem("de", "Draw E").SetValue(true));  
+            Menu.SubMenu("Drawings").AddItem(new MenuItem("dr", "Draw R").SetValue(true));
 
             Menu.AddToMainMenu();
             Game.OnUpdate += Game_OnGameUpdate;
