@@ -172,7 +172,7 @@ namespace DJNunu
             {
                 return;
             }
-            if (Menu.Item("wh").GetValue<bool>() && && W.IsReady())
+            if (Menu.Item("wh").GetValue<bool>() && W.IsReady())
             {
                 W.Cast();
             }
@@ -197,7 +197,7 @@ namespace DJNunu
                     }
                 }
             }
-            if (Menu.Item("wlc").GetValue<bool>() && && W.IsReady())
+            if (Menu.Item("wlc").GetValue<bool>() && W.IsReady())
             {
                 W.Cast();
             }
@@ -228,7 +228,7 @@ namespace DJNunu
                     }
                 }
             }
-            if (Menu.Item("wjc").GetValue<bool>() && && W.IsReady())
+            if (Menu.Item("wjc").GetValue<bool>() && W.IsReady())
             {
                 W.Cast();
             }
