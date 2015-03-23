@@ -329,44 +329,55 @@ namespace DJRyze
         }
         static void LastHit()
         {
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
+                if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
+                {
+                    {
+                        foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
+                        {
+                            if (minion.IsValidTarget())
+                            {
+                                Q.CastOnUnit(minion);
+                                return;
+                            }
+                        }
+                    }
+                }
             var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
             if (!keyActive)
                 return;
-            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
+            if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady())
             {
-                if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady() && Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
+                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                 {
-                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
+                    if (minion.IsValidTarget())
                     {
-                        if (minion.IsValidTarget())
-                        {
-                            Q.CastOnUnit(minion);
-                        }
-                    }
-                }
-                if (Config.Item("usewlast").GetValue<bool>() && W.IsReady())
-                {
-                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
-                    {
-                        if (minion.IsValidTarget())
-                        {
-                            W.CastOnUnit(minion);
-                        }
-                    }
-                }
-                if (Config.Item("useelast").GetValue<bool>() && E.IsReady())
-                {
-                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
-                    {
-                        if (minion.IsValidTarget())
-                        {
-                            E.CastOnUnit(minion);
-                        }
+                        Q.CastOnUnit(minion);
                     }
                 }
             }
-        }   
+            if (Config.Item("usewlast").GetValue<bool>() && W.IsReady())
+            {
+                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
+                {
+                    if (minion.IsValidTarget())
+                    {
+                        W.CastOnUnit(minion);
+                    }
+                }
+            }
+            if (Config.Item("useelast").GetValue<bool>() && E.IsReady())
+            {
+                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
+                {
+                    if (minion.IsValidTarget())
+                    {
+                        E.CastOnUnit(minion);
+                    }
+                }
+            }
+        }  
         static void KillSteal(Obj_AI_Hero Target)
         {
             var Champions = ObjectManager.Get<Obj_AI_Hero>();
