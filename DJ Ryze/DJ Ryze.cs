@@ -331,19 +331,19 @@ namespace DJRyze
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
             if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
-            if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
-            {
+                if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
                 {
-                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                     {
-                        if (minion.IsValidTarget())
+                        foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                         {
-                            Q.CastOnUnit(minion);
-                            return;
+                            if (minion.IsValidTarget())
+                            {
+                                Q.CastOnUnit(minion);
+                                return;
+                            }
                         }
                     }
                 }
-            }
             var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
             if (!keyActive)
                 return;
@@ -377,7 +377,7 @@ namespace DJRyze
                     }
                 }
             }
-        }  
+        }
         static void KillSteal(Obj_AI_Hero Target)
         {
             var Champions = ObjectManager.Get<Obj_AI_Hero>();
