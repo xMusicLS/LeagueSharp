@@ -71,7 +71,7 @@ namespace DJRyze
             Config.SubMenu("Harass").AddItem(new MenuItem("usewharass", "Use W").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("useeharass", "Use E").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("userharass", "Use R").SetValue(true));
-            Config.SubMenu("Harass").AddItem(new MenuItem("hrassmm", "Mana Manager").SetValue(new Slider(50,1,100)));
+            Config.SubMenu("Harass").AddItem(new MenuItem("harassmm", "Mana Manager").SetValue(new Slider(50,1,100)));
 
             Config.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
             Config.SubMenu("LaneClear").AddItem(new MenuItem("useqlane", "Use Q").SetValue(true));
@@ -202,49 +202,35 @@ namespace DJRyze
         }
         static void Harass(Obj_AI_Hero Target)
         {
-            try
+            if (!Target.IsValidTarget())
             {
-                if (!Target.IsValidTarget())
+                return;
+            }
+            if (Player.ManaPercentage() >= Config.Item("harassmm").GetValue<Slider>().Value)
+            {
+                if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
                 {
-                    return;
+                    R.Cast();
                 }
-                if (Player.ManaPercentage() >= Config.Item("harassmm").GetValue<Slider>().Value)
+                if (Config.Item("useqharass").GetValue<bool>() && Q.IsReady())
                 {
-                    Console.WriteLine("1");
-                    if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
-                        Console.WriteLine("2");
+                    Q.CastOnUnit(Target);
+                }
+                if (!Q.IsReady())
+                {
+                    if (Config.Item("useeharass").GetValue<bool>() && W.IsReady())
+                    {
+                        W.CastOnUnit(Target);
+                    }
+                    if (Config.Item("usewharass").GetValue<bool>() && E.IsReady())
+                    {
+                        E.CastOnUnit(Target);
+                    }
+                    if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
                     {
                         R.Cast();
                     }
-                    if (Config.Item("useqharass").GetValue<bool>() && Q.IsReady())
-                        Console.WriteLine("3");
-                    {
-                        Q.CastOnUnit(Target);
-                    }
-                    if (!Q.IsReady())
-                        Console.WriteLine("4");
-                    {
-                        if (Config.Item("useeharass").GetValue<bool>() && W.IsReady())
-                            Console.WriteLine("5");
-                        {
-                            W.CastOnUnit(Target);
-                        }
-                        if (Config.Item("usewharass").GetValue<bool>() && E.IsReady())
-                            Console.WriteLine("6");
-                        {
-                            E.CastOnUnit(Target);
-                        }
-                        if (Config.Item("userharass").GetValue<bool>() && R.IsReady())
-                            Console.WriteLine("7");
-                        {
-                            R.Cast();
-                        }
-                    }
                 }
-            }
-            catch(Exception e)
-            {
-
             }
         }
         static void LaneClear()
@@ -345,19 +331,19 @@ namespace DJRyze
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
             if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
-                if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
+            if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
+            {
                 {
+                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                     {
-                        foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
+                        if (minion.IsValidTarget())
                         {
-                            if (minion.IsValidTarget())
-                            {
-                                Q.CastOnUnit(minion);
-                                return;
-                            }
+                            Q.CastOnUnit(minion);
+                            return;
                         }
                     }
                 }
+            }
             var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
             if (!keyActive)
                 return;
