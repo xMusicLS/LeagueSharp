@@ -311,13 +311,14 @@ namespace DJAmumu
         static void KillSteal(Obj_AI_Hero Target)
         {
             var Champions = ObjectManager.Get<Obj_AI_Hero>();
-            if (Menu.Item("wks").GetValue<bool>() && W.IsReady() && ObjectManager.Get<Obj_AI_Hero>().Any(hero => hero.IsValidTarget(W.Range)))
+            if (Menu.Item("qks").GetValue<bool>() && Q.IsReady() && ObjectManager.Get<Obj_AI_Hero>().Any(hero => hero.IsValidTarget(Q.Range)))
             {
-                foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.W)))
+                foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.Q)))
                 {
                     if (champ.IsValidTarget())
                     {
-                        W.Cast();
+                        Q.GetPrediction(Target);
+                        Q.CastIfWillHit(Target);
                     }
                 }
             }
