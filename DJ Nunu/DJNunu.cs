@@ -281,9 +281,9 @@ namespace DJNunu
                     }
                 }
             }
-            if (Menu.Item("rks").GetValue<bool>() && E.IsReady())
+            if (Menu.Item("rks").GetValue<bool>() && R.IsReady())
             {
-                foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.E)))
+                foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.R)))
                 {
                     if (champ.IsValidTarget())
                     {
