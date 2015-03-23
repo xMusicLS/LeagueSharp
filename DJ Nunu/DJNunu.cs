@@ -53,6 +53,8 @@ namespace DJNunu
             Orbwalker = new Orbwalking.Orbwalker(Menu.SubMenu("Orbwalking"));
 
             Menu.AddSubMenu(new Menu("Combo", "Combo"));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("qc", "Use Q").SetValue(true));
+            Menu.SubMenu("Combo").AddItem(new MenuItem("combohm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Menu.SubMenu("Combo").AddItem(new MenuItem("wc", "Use W").SetValue(true));
             Menu.SubMenu("Combo").AddItem(new MenuItem("ec", "Use E").SetValue(true));
             Menu.SubMenu("Combo").AddItem(new MenuItem("rc", "Use R").SetValue(true));
@@ -60,6 +62,8 @@ namespace DJNunu
             Menu.SubMenu("Combo").AddItem(new MenuItem("ignitec", "Use Ignite").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Harass", "Harass"));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("qh", "Use Q").SetValue(true));
+            Menu.SubMenu("LaneClear").AddItem(new MenuItem("harasshm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Menu.SubMenu("Harass").AddItem(new MenuItem("wh", "Use W").SetValue(true));
             Menu.SubMenu("Harass").AddItem(new MenuItem("eh", "Use E").SetValue(true));
 
@@ -82,7 +86,6 @@ namespace DJNunu
 
             Menu.AddSubMenu(new Menu("Kill Steal", "KillSteal"));
             Menu.SubMenu("KillSteal").AddItem(new MenuItem("eks", "Use E").SetValue(true));
-            Menu.SubMenu("KillSteal").AddItem(new MenuItem("rks", "Use R").SetValue(true));
             Menu.SubMenu("KillSteal").AddItem(new MenuItem("igniteks", "Use Ignite").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
@@ -146,6 +149,20 @@ namespace DJNunu
             {
                 return;
             }
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            if (Player.HealthPercentage() <= Menu.Item("combohm").GetValue<Slider>().Value)
+            {
+                if (Menu.Item("qc").GetValue<bool>() && Q.IsReady())
+                {
+                    foreach (var minion in allMinions)
+                    {
+                        if (minion.IsValidTarget())
+                        {
+                            Q.CastOnUnit(minion);
+                        }
+                    }
+                }
+            }
             if (Menu.Item("wc").GetValue<bool>() && W.IsReady())
             {
                 W.Cast();
@@ -169,6 +186,20 @@ namespace DJNunu
             if (!target.IsValidTarget())
             {
                 return;
+            }
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            if (Player.HealthPercentage() <= Menu.Item("harasshm").GetValue<Slider>().Value)
+            {
+                if (Menu.Item("qh").GetValue<bool>() && Q.IsReady())
+                {
+                    foreach (var minion in allMinions)
+                    {
+                        if (minion.IsValidTarget())
+                        {
+                            Q.CastOnUnit(minion);
+                        }
+                    }
+                }
             }
             if (Menu.Item("wh").GetValue<bool>() && W.IsReady())
             {
@@ -278,16 +309,6 @@ namespace DJNunu
                     if (champ.IsValidTarget())
                     {
                         E.CastOnUnit(champ);
-                    }
-                }
-            }
-            if (Menu.Item("rks").GetValue<bool>() && R.IsReady())
-            {
-                foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.R)))
-                {
-                    if (champ.IsValidTarget())
-                    {
-                        R.Cast();
                     }
                 }
             }
