@@ -86,8 +86,6 @@ namespace DJNunu
             Menu.SubMenu("KillSteal").AddItem(new MenuItem("igniteks", "Use Ignite").SetValue(true));
 
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("autoq", "Auto Q").SetValue(true));
-            Menu.SubMenu("Misc").AddItem(new MenuItem("mischm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Menu.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
 
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
@@ -184,7 +182,7 @@ namespace DJNunu
         static void LaneClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.HealthPercentage() < Menu.Item("lanehm").GetValue<Slider>().Value)
+            if (Player.HealthPercentage() <= Menu.Item("lanehm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qlc").GetValue<bool>() && Q.IsReady())
                 {
@@ -215,7 +213,7 @@ namespace DJNunu
         static void JungleClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.HealthPercentage() < Menu.Item("junglehm").GetValue<Slider>().Value)
+            if (Player.HealthPercentage() <= Menu.Item("junglehm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qjc").GetValue<bool>() && Q.IsReady())
                 {
@@ -296,14 +294,6 @@ namespace DJNunu
             if (Player.Distance(Target.Position) <= 600 && IgniteDamage(Target) >= Target.Health && Menu.Item("ignitec").GetValue<bool>() && Menu.Item("igniteks").GetValue<bool>() && Menu.Item("miscignite").GetValue<StringList>().SelectedIndex == 1)
             {
                 Player.Spellbook.CastSpell(Ignite, Target);
-            }
-        }
-        static void Misc()
-        {
-            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.HealthPercentage() < Menu.Item("mischm").GetValue<Slider>().Value)
-            {
-                Q.Cast(allMinions.Where(m => m.IsValidTarget()).OrderBy(m => m.Health).FirstOrDefault());
             }
         }
     }
