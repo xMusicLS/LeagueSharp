@@ -287,7 +287,7 @@ namespace DJNunu
                 {
                     if (champ.IsValidTarget())
                     {
-                        E.CastOnUnit(champ);
+                        R.CastOnUnit(champ);
                     }
                 }
             }
