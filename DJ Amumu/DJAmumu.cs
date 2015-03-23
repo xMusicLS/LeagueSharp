@@ -36,7 +36,7 @@ namespace DJAmumu
                 return;
             }
             Player = ObjectManager.Player;
-            Notifications.AddNotification("DJ Amumu by xMusic", 10000);
+            Notifications.AddNotification("DJ Amumu loaded", 10000);
             Q = new Spell(SpellSlot.Q, 1100);
             W = new Spell(SpellSlot.W, 300);
             E = new Spell(SpellSlot.E, 350);
@@ -183,7 +183,7 @@ namespace DJAmumu
             {
                 return;
             }
-            if (Player.ManaPercentage() < Menu.Item("harassmm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Menu.Item("harassmm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qh").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range))
                 {
@@ -205,7 +205,7 @@ namespace DJAmumu
         static void LaneClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Menu.Item("lanemm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Menu.Item("lanemm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qlc").GetValue<bool>() && Q.IsReady())
                 {
@@ -242,7 +242,7 @@ namespace DJAmumu
             if (!keyActive)
                 return;
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Menu.Item("lastmm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Menu.Item("lastmm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qlh").GetValue<bool>() && Q.IsReady())
                 {
@@ -276,7 +276,7 @@ namespace DJAmumu
         static void JungleClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Menu.Item("junglemm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Menu.Item("junglemm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qjc").GetValue<bool>() && Q.IsReady())
                 {

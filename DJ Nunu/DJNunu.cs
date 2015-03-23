@@ -37,7 +37,7 @@ namespace DJNunu
                 return;
             }
             Player = ObjectManager.Player;
-            Notifications.AddNotification("DJ Nunu by xMusic", 10000);
+            Notifications.AddNotification("DJ Nunu loaded", 10000);
             Q = new Spell(SpellSlot.Q, 125);
             W = new Spell(SpellSlot.W, 700);
             E = new Spell(SpellSlot.E, 550);

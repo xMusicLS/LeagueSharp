@@ -39,7 +39,7 @@ namespace DJRyze
 
             Player = ObjectManager.Player;
 
-            Notifications.AddNotification("DJ Ryze by xMusic", 10000);
+            Notifications.AddNotification("DJ Ryze loaded", 10000);
             
 			Q = new Spell(SpellSlot.Q, 625);
 			W = new Spell(SpellSlot.W, 600);
@@ -206,7 +206,7 @@ namespace DJRyze
             {
                 return;
             }
-            if (Player.ManaPercentage() < Config.Item("harassmm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Config.Item("harassmm").GetValue<Slider>().Value)
             {
                 if (Config.Item("rfirst").GetValue<bool>() && (Config.Item("userharass").GetValue<bool>() && R.IsReady()))
                 {
@@ -236,7 +236,7 @@ namespace DJRyze
         static void LaneClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Config.Item("lanemm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Config.Item("lanemm").GetValue<Slider>().Value)
             {
                 if (Config.Item("useqlane").GetValue<bool>() && Q.IsReady())
                 {
@@ -283,7 +283,7 @@ namespace DJRyze
         static void JungleClear()
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
-            if (Player.ManaPercentage() < Config.Item("junglemm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Config.Item("junglemm").GetValue<Slider>().Value)
             {
                 if (Config.Item("useqjungle").GetValue<bool>() && Q.IsReady())
                 {
@@ -333,7 +333,7 @@ namespace DJRyze
             if (!keyActive)
                 return;
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
-            if (Player.ManaPercentage() < Config.Item("lastmm").GetValue<Slider>().Value)
+            if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
             {
                 if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady() && Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
                 {
