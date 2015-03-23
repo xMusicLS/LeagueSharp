@@ -173,7 +173,7 @@ namespace DJNunu
         }
         static void Harass(Obj_AI_Hero target)
         {
-            if (!target.IsValidTarget)
+            if (!target.IsValidTarget())
             {
                 return;
             }
