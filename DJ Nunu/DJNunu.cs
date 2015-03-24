@@ -243,7 +243,7 @@ namespace DJNunu
         }
         static void JungleClear()
         {
-            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, E.Range, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
             if (Player.HealthPercentage() <= Menu.Item("junglehm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qjc").GetValue<bool>() && Q.IsReady())
