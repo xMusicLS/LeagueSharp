@@ -107,7 +107,7 @@ namespace DJRyze
             Config.SubMenu("KillSteal").AddItem(new MenuItem("killignite", "Use Ignite").SetValue(true));
 
             Config.AddSubMenu(new Menu("Misc", "Misc"));
-            Config.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
+            Config.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] {"Combo", "Kill Steal"})));
             Config.SubMenu("Misc").AddItem(new MenuItem("rfirst", "Use R first").SetValue(true));
             Config.SubMenu("Misc").AddItem(new MenuItem("wgapcloser", "Use W on GapCloser").SetValue(true));
 
