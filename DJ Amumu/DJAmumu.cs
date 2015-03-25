@@ -110,19 +110,19 @@ namespace DJAmumu
         {
             if (Menu.Item("drawq").GetValue<bool>())
             {
-                Render.Circle.DrawCircle(ObjectManager.Player.ServerPosition, Q.Range, System.Drawing.Color.OrangeRed);
+                Render.Circle.DrawCircle(ObjectManager.Player.Position, Q.Range, System.Drawing.Color.OrangeRed);
             }
             if (Menu.Item("draww").GetValue<bool>())
             {
-                Render.Circle.DrawCircle(ObjectManager.Player.ServerPosition, W.Range, System.Drawing.Color.OrangeRed);
+                Render.Circle.DrawCircle(ObjectManager.Player.Position, W.Range, System.Drawing.Color.OrangeRed);
             }
             if (Menu.Item("drawe").GetValue<bool>())
             {
-                Render.Circle.DrawCircle(ObjectManager.Player.ServerPosition, E.Range, System.Drawing.Color.OrangeRed);
+                Render.Circle.DrawCircle(ObjectManager.Player.Position, E.Range, System.Drawing.Color.OrangeRed);
             }
             if (Menu.Item("drawr").GetValue<bool>())
             {
-                Render.Circle.DrawCircle(ObjectManager.Player.ServerPosition, R.Range, System.Drawing.Color.OrangeRed);
+                Render.Circle.DrawCircle(ObjectManager.Player.Position, R.Range, System.Drawing.Color.OrangeRed);
             }
         }
         static void Game_OnGameUpdate(EventArgs args)
@@ -144,7 +144,7 @@ namespace DJAmumu
             LastHit();
             var ksTarget = ObjectManager.Get<Obj_AI_Hero>().Where(t => t.IsValidTarget()).OrderBy(t => t.Health).FirstOrDefault();
             if (ksTarget != null)
-            KillSteal(ksTarget);
+                KillSteal(ksTarget);
         }
         static void Combo(Obj_AI_Hero target)
         {
@@ -154,7 +154,7 @@ namespace DJAmumu
             }
             if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range) && Q.GetPrediction(target).Hitchance >= HitChance.High)
             {
-                Q.CastIfWillHit(target);
+                Q.CastIfHitchanceEquals(target, HitChance.High);
             }
             if (ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).ToggleState == 1)
             {
@@ -185,9 +185,9 @@ namespace DJAmumu
             }
             if (Player.ManaPercentage() >= Menu.Item("harassmm").GetValue<Slider>().Value)
             {
-                if (Menu.Item("qh").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range))
+                if (Menu.Item("qh").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range) && Q.GetPrediction(target).Hitchance >= HitChance.Medium)
                 {
-                    Q.CastOnUnit(target);
+                    Q.CastIfHitchanceEquals(target, HitChance.Medium);
                 }
                 if (ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).ToggleState == 1)
                 {
@@ -213,7 +213,8 @@ namespace DJAmumu
                     {
                         if (minion.IsValidTarget())
                         {
-                            Q.CastOnUnit(minion);
+                            Q.GetPrediction(minion);
+                            Q.CastIfHitchanceEquals(minion, HitChance.Medium);
                         }
                     }
                 }
@@ -250,7 +251,8 @@ namespace DJAmumu
                     {
                         if (minion.IsValidTarget())
                         {
-                            Q.CastOnUnit(minion);
+                            Q.GetPrediction(minion);
+                            Q.CastIfHitchanceEquals(minion, HitChance.Medium);
                         }
                     }
                 }
@@ -275,7 +277,7 @@ namespace DJAmumu
         }
         static void JungleClear()
         {
-            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, E.Range, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
             if (Player.ManaPercentage() >= Menu.Item("junglemm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qjc").GetValue<bool>() && Q.IsReady())
@@ -284,7 +286,8 @@ namespace DJAmumu
                     {
                         if (minion.IsValidTarget())
                         {
-                            Q.CastOnUnit(minion);
+                            Q.GetPrediction(minion);
+                            Q.CastIfHitchanceEquals(minion, HitChance.Medium);
                         }
                     }
                 }
@@ -317,7 +320,7 @@ namespace DJAmumu
                     if (champ.IsValidTarget())
                     {
                         Q.GetPrediction(Target);
-                        Q.CastIfWillHit(Target);
+                        Q.CastIfHitchanceEquals(Target, HitChance.Medium);
                     }
                 }
             }
