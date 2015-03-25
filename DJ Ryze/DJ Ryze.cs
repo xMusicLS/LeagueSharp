@@ -12,7 +12,7 @@ namespace DJRyze
     class Program
     {
         // Fields and Functions
-        
+
         private static Orbwalking.Orbwalker Orbwalker;
         private static Menu Config;
         private static Spell Q, W, E, R;
@@ -31,34 +31,34 @@ namespace DJRyze
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
         static void Game_OnGameLoad(EventArgs args)
-		{
-			if (ObjectManager.Player.ChampionName != "Ryze")
-			{
-				return;
-			}
+        {
+            if (ObjectManager.Player.ChampionName != "Ryze")
+            {
+                return;
+            }
 
             Player = ObjectManager.Player;
 
             Notifications.AddNotification("DJ Ryze loaded", 10000);
-            
-			Q = new Spell(SpellSlot.Q, 625);
-			W = new Spell(SpellSlot.W, 600);
-			E = new Spell(SpellSlot.E, 600);
-			R = new Spell(SpellSlot.R);
+
+            Q = new Spell(SpellSlot.Q, 625);
+            W = new Spell(SpellSlot.W, 600);
+            E = new Spell(SpellSlot.E, 600);
+            R = new Spell(SpellSlot.R);
 
             Ignite = Player.GetSpellSlot("summonerdot");
 
             // Menu
-            
-			Config = new Menu("DJ Ryze", "Ryze", true);
 
-			var tsMenu = new Menu("Target Selector", "TargetSelector");
+            Config = new Menu("DJ Ryze", "Ryze", true);
+
+            var tsMenu = new Menu("Target Selector", "TargetSelector");
             TargetSelector.AddToMenu(tsMenu);
             Config.AddSubMenu(tsMenu);
-            
+
             Config.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
             Orbwalker = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalking"));
-            
+
             Config.AddSubMenu(new Menu("Combo", "Combo"));
             Config.SubMenu("Combo").AddItem(new MenuItem("useqcombo", "Use Q").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("usewcombo", "Use W").SetValue(true));
@@ -66,14 +66,14 @@ namespace DJRyze
             Config.SubMenu("Combo").AddItem(new MenuItem("usercombo", "Use R").SetValue(true));
             Config.SubMenu("Combo").AddItem(new MenuItem("combohm", "Health Manager").SetValue(new Slider(50, 1, 100)));
             Config.SubMenu("Combo").AddItem(new MenuItem("useignitecombo", "Use Ignite").SetValue(true));
-            
+
             Config.AddSubMenu(new Menu("Harass", "Harass"));
             Config.SubMenu("Harass").AddItem(new MenuItem("useqharass", "Use Q").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("usewharass", "Use W").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("useeharass", "Use E").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("userharass", "Use R").SetValue(true));
             Config.SubMenu("Harass").AddItem(new MenuItem("harasshm", "Health Manager").SetValue(new Slider(50, 1, 100)));
-            Config.SubMenu("Harass").AddItem(new MenuItem("harassmm", "Mana Manager").SetValue(new Slider(50,1,100)));
+            Config.SubMenu("Harass").AddItem(new MenuItem("harassmm", "Mana Manager").SetValue(new Slider(50, 1, 100)));
 
             Config.AddSubMenu(new Menu("Lane Clear", "LaneClear"));
             Config.SubMenu("LaneClear").AddItem(new MenuItem("useqlane", "Use Q").SetValue(true));
@@ -107,7 +107,7 @@ namespace DJRyze
             Config.SubMenu("KillSteal").AddItem(new MenuItem("killignite", "Use Ignite").SetValue(true));
 
             Config.AddSubMenu(new Menu("Misc", "Misc"));
-            Config.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[]{"Combo", "Kill Steal"})));
+            Config.SubMenu("Misc").AddItem(new MenuItem("miscignite", "Use Ignite").SetValue(new StringList(new[] { "Combo", "Kill Steal" })));
             Config.SubMenu("Misc").AddItem(new MenuItem("rfirst", "Use R first").SetValue(true));
             Config.SubMenu("Misc").AddItem(new MenuItem("wgapcloser", "Use W on GapCloser").SetValue(true));
 
@@ -347,7 +347,8 @@ namespace DJRyze
         {
             var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
             if (Player.ManaPercentage() >= Config.Item("lastmm").GetValue<Slider>().Value)
-                if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active)
+            {
+                if (Config.Item("lasthitqtoggle").GetValue<KeyBind>().Active && !Player.IsRecalling())
                 {
                     {
                         foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
@@ -360,36 +361,37 @@ namespace DJRyze
                         }
                     }
                 }
-            var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
-            if (!keyActive)
-                return;
-            if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady())
-            {
-                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
+                var keyActive = Config.Item("lasthitkeybinding").GetValue<KeyBind>().Active;
+                if (!keyActive)
+                    return;
+                if (Config.Item("useqlast").GetValue<bool>() && Q.IsReady())
                 {
-                    if (minion.IsValidTarget())
+                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.Q)))
                     {
-                        Q.CastOnUnit(minion);
+                        if (minion.IsValidTarget())
+                        {
+                            Q.CastOnUnit(minion);
+                        }
                     }
                 }
-            }
-            if (Config.Item("usewlast").GetValue<bool>() && W.IsReady())
-            {
-                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
+                if (Config.Item("usewlast").GetValue<bool>() && W.IsReady())
                 {
-                    if (minion.IsValidTarget())
+                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
                     {
-                        W.CastOnUnit(minion);
+                        if (minion.IsValidTarget())
+                        {
+                            W.CastOnUnit(minion);
+                        }
                     }
                 }
-            }
-            if (Config.Item("useelast").GetValue<bool>() && E.IsReady())
-            {
-                foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
+                if (Config.Item("useelast").GetValue<bool>() && E.IsReady())
                 {
-                    if (minion.IsValidTarget())
+                    foreach (var minion in allMinions.Where(minion => minion.Health <= ObjectManager.Player.GetSpellDamage(minion, SpellSlot.W)))
                     {
-                        E.CastOnUnit(minion);
+                        if (minion.IsValidTarget())
+                        {
+                            E.CastOnUnit(minion);
+                        }
                     }
                 }
             }
@@ -400,7 +402,7 @@ namespace DJRyze
             if (Config.Item("killq").GetValue<bool>() && Q.IsReady())
             {
                 foreach (var champ in Champions.Where(champ => champ.Health <= ObjectManager.Player.GetSpellDamage(champ, SpellSlot.Q)))
-                { 
+                {
                     if (champ.IsValidTarget())
                     {
                         Q.CastOnUnit(champ);
