@@ -212,7 +212,7 @@ namespace DJNunu
         }
         static void LaneClear()
         {
-            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
+            var allMinions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, E.Range);
             if (Player.HealthPercentage() <= Menu.Item("lanehm").GetValue<Slider>().Value)
             {
                 if (Menu.Item("qlc").GetValue<bool>() && Q.IsReady())
