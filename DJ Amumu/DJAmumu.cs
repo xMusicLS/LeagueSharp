@@ -152,9 +152,9 @@ namespace DJAmumu
             {
                 return;
             }
-            if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range) && Q.GetPrediction(target).Hitchance >= HitChance.High)
+            if (Menu.Item("qc").GetValue<bool>() && Q.IsReady() && target.IsValidTarget(Q.Range) && Q.GetPrediction(target).Hitchance >= HitChance.Medium)
             {
-                Q.CastIfHitchanceEquals(target, HitChance.High);
+                Q.CastIfHitchanceEquals(target, HitChance.Medium);
             }
             if (ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).ToggleState == 1)
             {
