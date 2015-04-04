@@ -287,7 +287,7 @@ namespace DJAmumu
                         if (minion.IsValidTarget())
                         {
                             Q.GetPrediction(minion);
-                            Q.CastIfHitchanceEquals(minion, HitChance.Medium);
+                            Q.CastIfHitchanceEquals(minion, HitChance.High);
                         }
                     }
                 }
